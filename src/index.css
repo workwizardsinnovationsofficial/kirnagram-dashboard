@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* kirnagram Admin Dashboard Design System */
+
+@layer base {
+  :root {
+    --background: 36 38% 97%;
+    --foreground: 24 28% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 24 28% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 28% 12%;
+
+    --primary: 28 94% 53%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 34 38% 93%;
+    --secondary-foreground: 24 28% 16%;
+
+    --muted: 34 32% 92%;
+    --muted-foreground: 24 12% 38%;
+
+    --accent: 36 96% 64%;
+    --accent-foreground: 26 68% 14%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 28% 84%;
+    --input: 30 28% 84%;
+    --ring: 28 94% 53%;
+
+    --radius: 0.75rem;
+
+    /* Chart colors */
+    --chart-cyan: 185 85% 55%;
+    --chart-purple: 14 88% 58%;
+    --chart-pink: 330 85% 60%;
+    --chart-green: 150 75% 45%;
+    --chart-orange: 30 90% 55%;
+    --chart-blue: 210 90% 60%;
+    --chart-yellow: 45 95% 55%;
+
+    /* Sidebar */
+    --sidebar-background: 24 42% 12%;
+    --sidebar-foreground: 30 55% 90%;
+    --sidebar-primary: 28 94% 53%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 24 42% 18%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 24 36% 22%;
+    --sidebar-ring: 28 94% 53%;
+    --sidebar-muted: 30 24% 68%;
+  }
+
+  .dark {
+    --background: 22 32% 8%;
+    --foreground: 35 50% 96%;
+
+    --card: 24 30% 12%;
+    --card-foreground: 35 50% 96%;
+
+    --popover: 24 30% 12%;
+    --popover-foreground: 35 50% 96%;
+
+    --primary: 28 94% 56%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 22 24% 18%;
+    --secondary-foreground: 35 50% 96%;
+
+    --muted: 22 24% 16%;
+    --muted-foreground: 30 30% 76%;
+
+    --accent: 36 96% 64%;
+    --accent-foreground: 24 42% 15%;
+
+    --destructive: 0 70% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 24 24% 24%;
+    --input: 24 24% 24%;
+    --ring: 28 94% 56%;
+
+    --sidebar-background: 24 38% 9%;
+    --sidebar-foreground: 30 55% 90%;
+    --sidebar-primary: 28 94% 56%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 24 34% 15%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 24 28% 19%;
+    --sidebar-ring: 28 94% 56%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+
+  .sidebar-item-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+}
