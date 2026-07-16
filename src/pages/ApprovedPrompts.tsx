@@ -14,7 +14,7 @@ const ApprovedPrompts = () => {
   const [updatingPayoutId, setUpdatingPayoutId] = useState<string | null>(null);
   const [updatingBurnCreditsId, setUpdatingBurnCreditsId] = useState<string | null>(null);
 
-  const API_URL = "http://127.0.0.1:8000/admin/ai-creator/prompts";
+  const API_URL = "https://api.kirnagram.com/admin/ai-creator/prompts";
 
   const normalizeStatus = (value: string): PromptRequest["status"] => {
     const normalized = (value || "").toLowerCase();

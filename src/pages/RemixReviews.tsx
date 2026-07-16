@@ -23,7 +23,7 @@ interface RemixReview {
   remix_created_at?: string;
 }
 
-const API_URL = "http://127.0.0.1:8000/admin/ai-creator/remix-reviews";
+const API_URL = "https://api.kirnagram.com/admin/ai-creator/remix-reviews";
 
 const RemixReviews = () => {
   const [reviews, setReviews] = useState<RemixReview[]>([]);
