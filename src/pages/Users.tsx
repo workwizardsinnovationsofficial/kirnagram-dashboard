@@ -3,7 +3,7 @@ import { AdminLayout } from "@/components/admin/AdminLayout";
 import { UsersDetailsTable, NormalUserRow, AICreatorUserRow } from "@/components/admin/UsersDetailsTable";
 import { toast } from "sonner";
 
-const API_BASE = import.meta.env.VITE_API_BASE || "https://api.kirnagram.com";
+const API_BASE = import.meta.env.VITE_API_BASE || "http://localhost:8000";
 
 interface UsersApiResponse {
   normal_users: NormalUserRow[];

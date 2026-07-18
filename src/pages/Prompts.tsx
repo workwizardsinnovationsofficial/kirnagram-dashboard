@@ -13,7 +13,7 @@ const Prompts = () => {
   const [error, setError] = useState<string | null>(null);
   const [viewFilter, setViewFilter] = useState<"all" | "pending" | "delete_requested">("all");
 
-  const API_URL = "https://api.kirnagram.com/admin/ai-creator/prompts";
+  const API_URL = "http://localhost:8000/admin/ai-creator/prompts";
 
   const normalizeStatus = (value: string): PromptRequest["status"] => {
     const normalized = (value || "").toLowerCase();

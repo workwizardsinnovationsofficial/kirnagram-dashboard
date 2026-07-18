@@ -23,7 +23,7 @@ import { toast } from "sonner";
 import type { AICreatorRequest } from "@/types/aiCreatorRequest";
 import { Instagram, Youtube, Linkedin, Globe, X as XIcon, Phone, Calendar } from "lucide-react";
 
-const API_URL = "https://api.kirnagram.com/admin/ai-creator/applications"; // Adjusted to match backend
+const API_URL = "http://localhost:8000/admin/ai-creator/applications"; // Adjusted to match backend
 
 const AICreatorRequests = () => {
   const [requests, setRequests] = useState<AICreatorRequest[]>([]);
@@ -105,7 +105,7 @@ const AICreatorRequests = () => {
   // Approve/reject handlers (call backend)
   const handleApprove = async (id: string) => {
     try {
-      const res = await fetch(`https://api.kirnagram.com/admin/ai-creator/applications/${id}/approve`, {
+      const res = await fetch(`http://localhost:8000/admin/ai-creator/applications/${id}/approve`, {
         method: "POST",
       });
       if (!res.ok) throw new Error("Failed to approve");
@@ -131,7 +131,7 @@ const AICreatorRequests = () => {
 
   const handleReject = async (id: string) => {
     try {
-      const res = await fetch(`https://api.kirnagram.com/admin/ai-creator/applications/${id}/reject`, {
+      const res = await fetch(`http://localhost:8000/admin/ai-creator/applications/${id}/reject`, {
         method: "POST",
       });
       if (!res.ok) throw new Error("Failed to reject");
@@ -160,7 +160,7 @@ const AICreatorRequests = () => {
     }
     const reason = suspendReason.trim() || "Illegal activity";
     try {
-      const res = await fetch(`https://api.kirnagram.com/admin/ai-creator/applications/${selectedRequestId}/suspend`, {
+      const res = await fetch(`http://localhost:8000/admin/ai-creator/applications/${selectedRequestId}/suspend`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ days, reason }),
@@ -200,7 +200,7 @@ const AICreatorRequests = () => {
     if (!selectedRequestId) return;
     const reason = blockReason.trim() || "Illegal activity";
     try {
-      const res = await fetch(`https://api.kirnagram.com/admin/ai-creator/applications/${selectedRequestId}/block`, {
+      const res = await fetch(`http://localhost:8000/admin/ai-creator/applications/${selectedRequestId}/block`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ reason }),
@@ -234,7 +234,7 @@ const AICreatorRequests = () => {
     if (!confirmed) return;
 
     try {
-      const res = await fetch(`https://api.kirnagram.com/admin/ai-creator/applications/${id}/revoke`, {
+      const res = await fetch(`http://localhost:8000/admin/ai-creator/applications/${id}/revoke`, {
         method: "POST",
       });
       if (!res.ok) throw new Error("Failed to revoke restriction");
