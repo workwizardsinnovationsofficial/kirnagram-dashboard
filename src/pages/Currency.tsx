@@ -5,7 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/componen
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
-const API_BASE = "https://api.kirnagram.com";
+const API_BASE = "http://localhost:8000";
 
 const Currency = () => {
   const { toast } = useToast();
