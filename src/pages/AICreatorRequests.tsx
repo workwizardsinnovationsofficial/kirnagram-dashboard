@@ -28,6 +28,7 @@ const API_URL = "https://api.kirnagram.com/admin/ai-creator/applications"; // Ad
 const AICreatorRequests = () => {
   const [requests, setRequests] = useState<AICreatorRequest[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const [statusFilter, setStatusFilter] = useState<"all" | "approved" | "pending" | "suspended" | "blocked" | "rejected">("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedRequestId, setSelectedRequestId] = useState<string | null>(null);
@@ -79,11 +80,13 @@ const AICreatorRequests = () => {
   }, []);
 
   const filteredRequests = useMemo(() => {
-    const filtered = requests.filter((req) =>
-      req.username?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      req.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      req.name?.toLowerCase().includes(searchQuery.toLowerCase()),
-    );
+    const filtered = requests
+      .filter((req) =>
+        req.username?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        req.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        req.name?.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+      .filter((req) => statusFilter === "all" || req.status === statusFilter);
 
     const order = {
       approved: 0,
@@ -100,7 +103,7 @@ const AICreatorRequests = () => {
       if (statusA !== statusB) return statusA - statusB;
       return b.submittedAt.getTime() - a.submittedAt.getTime();
     });
-  }, [requests, searchQuery]);
+  }, [requests, searchQuery, statusFilter]);
 
   // Approve/reject handlers (call backend)
   const handleApprove = async (id: string) => {
@@ -312,15 +315,36 @@ const AICreatorRequests = () => {
           </div>
         </div>
 
-        {/* Search */}
-        <div className="relative max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-          <Input
-            placeholder="Search by username, email..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="pl-9 bg-card"
-          />
+        {/* Search and Status Filter */}
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <div className="relative max-w-sm w-full sm:w-auto">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Input
+              placeholder="Search by username, email..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-9 bg-card"
+            />
+          </div>
+          <div className="flex flex-wrap items-center gap-2">
+            {[
+              { label: "All", value: "all" },
+              { label: "Approved", value: "approved" },
+              { label: "Pending", value: "pending" },
+              { label: "Suspended", value: "suspended" },
+              { label: "Blocked", value: "blocked" },
+              { label: "Rejected", value: "rejected" },
+            ].map((filter) => (
+              <Button
+                key={filter.value}
+                size="sm"
+                variant={statusFilter === filter.value ? "default" : "outline"}
+                onClick={() => setStatusFilter(filter.value as any)}
+              >
+                {filter.label}
+              </Button>
+            ))}
+          </div>
         </div>
 
         {/* Requests List */}
