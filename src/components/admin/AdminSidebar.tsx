@@ -52,6 +52,7 @@ export function AdminSidebar() {
     ...(!agent ? [{ title: "Ads", url: "/ads", icon: Megaphone }] : []),
     ...(!agent ? [{ title: "Withdraw", url: "/currency", icon: Coins }] : []),
     ...(!agent ? [{ title: "Credits Settings", url: "/credits", icon: Coins }] : []),
+    ...(!agent ? [{ title: "Creator Bonus", url: "/creator-bonus", icon: Sparkles }] : []),
     ...(!agent ? [{ title: "AI Creators", url: "/ai-creators", icon: Sparkles }] : []),
   ];
 

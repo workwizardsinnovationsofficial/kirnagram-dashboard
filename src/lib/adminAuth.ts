@@ -3,6 +3,7 @@ import {
   updatePassword,
   EmailAuthProvider,
   reauthenticateWithCredential,
+  getIdToken,
 } from "firebase/auth";
 import { auth } from "./firebase";
 
@@ -77,6 +78,32 @@ export interface ChangePasswordResult {
  * Changes the currently signed-in Firebase admin's password.
  * Re-authenticates first to satisfy Firebase's recent-login requirement.
  */
+export const getAdminToken = async (): Promise<string | null> => {
+  const user = auth.currentUser;
+  if (!user) {
+    return null;
+  }
+
+  try {
+    return await getIdToken(user);
+  } catch {
+    return null;
+  }
+};
+
+export const getAdminHeaders = async (): Promise<Record<string, string>> => {
+  const token = await getAdminToken();
+  if (token) {
+    return { Authorization: `Bearer ${token}` };
+  }
+
+  if (isAdminAuthenticated()) {
+    return { "X-Local-Admin": "true" };
+  }
+
+  return {};
+};
+
 export const changeAdminPassword = async (
   oldPassword: string,
   newPassword: string,

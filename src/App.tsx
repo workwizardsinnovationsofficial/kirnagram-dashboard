@@ -11,6 +11,7 @@ import RemixReviews from "./pages/RemixReviews";
 import Ads from "./pages/Ads";
 import Currency from "./pages/Currency";
 import CreditsSettings from "./pages/CreditsSettings";
+import CreatorBonus from "./pages/CreatorBonus";
 import AICreatorRequests from "./pages/AICreatorRequests";
 import Users from "./pages/Users";
 import NotFound from "./pages/NotFound";
@@ -45,6 +46,7 @@ const App = () => (
             <Route element={<RequireAdminOrAgent type="admin" />}>
               <Route path="/currency" element={<Currency />} />
               <Route path="/credits" element={<CreditsSettings />} />
+              <Route path="/creator-bonus" element={<CreatorBonus />} />
             </Route>
             <Route element={<RequireAdminOrAgent type="agent" requiredPermission="aiCreatorRequests" />}>
               <Route path="/ai-creators" element={<AICreatorRequests />} />
