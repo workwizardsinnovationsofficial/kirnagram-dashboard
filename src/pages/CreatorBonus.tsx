@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { AICreatorUserRow } from "@/components/admin/UsersDetailsTable";
 import { getAdminHeaders } from "@/lib/adminAuth";
 
-const API_BASE = import.meta.env.VITE_API_BASE || (typeof window !== "undefined" && ["localhost", "127.0.0.1"].includes(window.location.hostname) ? "http://localhost:8000" : "https://api.kirnagram.com");
+const API_BASE = import.meta.env.VITE_API_BASE || (typeof window !== "undefined" && ["localhost", "127.0.0.1"].includes(window.location.hostname) ? "https://api.kirnagram.com" : "https://api.kirnagram.com");
 
 const formatNumber = (value?: number) => Number(value ?? 0).toLocaleString();
 
